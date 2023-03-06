@@ -17,12 +17,12 @@ class HomeServiceImpl implements HomeService {
           return StockModel.fromMap(jsonItem);
         } catch (_) {
           throw FailToConvertJsonException(
-              'Parece que o arquivo que recebemos esta com algum problema. Tente outro codigo ou aguarde alguns minutos.');
+              'Parece que o arquivo que recebemos esta com algum problema. Tente outro código ou aguarde alguns minutos.');
         }
       }
     }
     throw FailToLocateStockException(
-        'Nao foi possivel localizar nenhuma acao a partir dos dados digitados. Tente mudar a pesquisa!');
+        'Não foi possível localizar nenhum ativo a partir dos dados digitados. Tente mudar a pesquisa!');
   }
 
   Future<List<Map<String, dynamic>>> _loadAndDecode() async {
@@ -32,7 +32,7 @@ class HomeServiceImpl implements HomeService {
       return jsonList;
     } catch (_) {
       throw FailToLoadMockJsonException(
-          'Houve uma falha no carregamento dos dados');
+          'Houve uma falha no carregamento dos dados, por favor, tente novamente mais tarde.');
     }
   }
 }
