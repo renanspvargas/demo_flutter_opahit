@@ -1,3 +1,3 @@
 class HomeConstants {
-  static const mockData = 'assets/data.json';
+  static const mockData = 'assets/mock/data.json';
 }
