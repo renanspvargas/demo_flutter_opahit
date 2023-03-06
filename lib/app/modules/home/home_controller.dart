@@ -16,7 +16,7 @@ class HomeController extends GetxController with LoaderMixin, MessagesMixin {
   @override
   void onReady() async {
     super.onReady();
-    await getStockInfo();
+    await getStockData();
   }
 
   @override
@@ -26,8 +26,8 @@ class HomeController extends GetxController with LoaderMixin, MessagesMixin {
     messageListener(_message);
   }
 
-  Future<void> getStockInfo({stockCode = 'PETR4'}) async {
-    final result = await _homeService.getStockInfo(stockCode);
+  Future<void> getStockData({stockCode = 'PETR4'}) async {
+    final result = await _homeService.getStockData(stockCode);
     await Future.delayed(const Duration(seconds: 2));
     stockData(result);
   }
