@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lucky_investor/app/core/state/lucky_investor_state.dart';
 import 'package:lucky_investor/app/modules/home/home_controller.dart';
 import 'package:lucky_investor/app/modules/home/widgets/stock_variation_chart.dart';
+import 'package:lucky_investor/app/modules/home/widgets/stock_variation_table.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -71,11 +72,13 @@ class _HomePageState extends LuckyInvestorState<HomePage, HomeController> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'A rentabilidade dos ultimos 30 pregoes foi de: ${stock.variation.last.formattedFirstDayVariation}',
+                        'A rentabilidade dos últimos 30 pregões foi de: ${stock.variation.last.formattedFirstDayVariation}',
                         style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(height: 20),
                       StockVariationChart(stock: stock),
+                      const SizedBox(height: 20),
+                      StockVariationTable(stock: stock),
                     ],
                   );
                 }
