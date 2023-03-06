@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class StockModel {
   final String name;
@@ -74,4 +75,23 @@ class StockVariationModel {
     required double firstDayValue,
   })  : _previousValue = previousValue,
         _firstDayValue = firstDayValue;
+
+  String get dayAsString => day.toString();
+
+  String get formattedDate {
+    return DateFormat('dd/MM/yy').format(date);
+  }
+
+  String get formattedValue => 'R\$ ${value.toStringAsFixed(2)}';
+
+  String get formattedFirstDayVariation => _calculateVariation(_firstDayValue);
+
+  String get formattedD1Variation => _calculateVariation(_previousValue);
+
+  String _calculateVariation(double previousValue) {
+    if (previousValue == 0) return '-';
+
+    final result = ((value - previousValue) / previousValue) * 100;
+    return '${result.toStringAsFixed(2)}%';
+  }
 }
