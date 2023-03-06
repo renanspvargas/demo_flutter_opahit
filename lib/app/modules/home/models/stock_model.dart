@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class StockModel {
   final String name;
   final String code;
@@ -8,6 +10,53 @@ class StockModel {
     required this.code,
     required this.variation,
   });
+
+  factory StockModel.fromMap(Map<String, dynamic> map) {
+    final variationList = <StockVariationModel>[];
+
+    final name = map['name'] as String;
+    final code = map['code'] as String;
+    var variationJsonList = map['variation'] as List;
+
+    variationJsonList.sort((a, b) {
+      var adate = a['date'];
+      var bdate = b['date'];
+      return adate.compareTo(bdate);
+    });
+
+    variationJsonList = variationJsonList.take(30).toList();
+
+    variationJsonList.asMap().forEach((index, stockVariation) {
+      final day = index + 1;
+      final value = variationJsonList[index]['value'];
+      final date = variationJsonList[index]['date'];
+
+      double previusValue = 0;
+      double firstDayValue = 0;
+
+      if (index > 0) {
+        previusValue = variationJsonList[index - 1]['value'];
+        firstDayValue = variationJsonList[0]['value'];
+      }
+
+      variationList.add(StockVariationModel(
+        day: day,
+        value: value,
+        date: DateTime.parse(date),
+        previousValue: previusValue,
+        firstDayValue: firstDayValue,
+      ));
+    });
+
+    return StockModel(
+      name: name,
+      code: code,
+      variation: variationList,
+    );
+  }
+
+  factory StockModel.fromJson(String source) =>
+      StockModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class StockVariationModel {
