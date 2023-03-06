@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lucky_investor/app/core/state/lucky_investor_state.dart';
 import 'package:lucky_investor/app/modules/home/home_controller.dart';
+import 'package:lucky_investor/app/modules/home/widgets/stock_variation_chart.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -48,6 +50,36 @@ class _HomePageState extends LuckyInvestorState<HomePage, HomeController> {
                 },
                 child: const Text('Pesquisar'),
               ),
+              Obx(() {
+                if (controller.stockData.value == null) {
+                  return Container();
+                } else {
+                  final stock = controller.stockData.value;
+                  return Column(
+                    children: [
+                      Text(
+                        stock!.name,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        stock.code.toUpperCase(),
+                        style: const TextStyle(fontSize: 15),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'A rentabilidade dos ultimos 30 pregoes foi de: ${stock.variation.last.formattedFirstDayVariation}',
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 20),
+                      StockVariationChart(stock: stock),
+                    ],
+                  );
+                }
+              }),
             ],
           ),
         ),
