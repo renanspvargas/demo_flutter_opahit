@@ -10,13 +10,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends LuckyInvestorState<HomePage, HomeController> {
+  final _stockFieldController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _stockFieldController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
+      appBar: AppBar(title: const Text('Home page')),
+      body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              TextFormField(
+                key: _formKey,
+                controller: _stockFieldController,
+                decoration: InputDecoration(
+                  labelText: 'Digite o código do ativo',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(23),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      body: Container(),
     );
   }
 }
