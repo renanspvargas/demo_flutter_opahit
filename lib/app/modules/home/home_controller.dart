@@ -29,10 +29,10 @@ class HomeController extends GetxController with LoaderMixin, MessagesMixin {
     messageListener(_message);
   }
 
-  Future<void> getStockData({stockCode = 'PETR4'}) async {
+  Future<void> getStockData({String stockCode = 'PETR4'}) async {
     try {
       _loading.toggle();
-      final result = await _homeService.getStockData(stockCode);
+      final result = await _homeService.getStockData(stockCode.toUpperCase());
       await Future.delayed(const Duration(seconds: 2));
       stockData(result);
       _loading.toggle();

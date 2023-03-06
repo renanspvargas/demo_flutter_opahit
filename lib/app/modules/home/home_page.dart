@@ -39,6 +39,15 @@ class _HomePageState extends LuckyInvestorState<HomePage, HomeController> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  controller.getStockData(
+                      stockCode: _stockFieldController.text);
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: const Text('Pesquisar'),
+              ),
             ],
           ),
         ),
