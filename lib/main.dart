@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lucky_investor/app/core/bindings/application_bindings.dart';
+import 'package:lucky_investor/app/modules/home/routes/home_routes.dart';
 
 void main() {
   runApp(const LuckyInvestorApp());
@@ -15,7 +17,12 @@ class LuckyInvestorApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      debugShowCheckedModeBanner: false,
+      initialBinding: ApplicationBinding(),
+      initialRoute: HomeRoutes.home,
+      getPages: [
+        ...HomeRoutes.routers,
+      ],
     );
   }
 }
