@@ -50,6 +50,10 @@ When creating a feature you must:
  - Imports must be full path from package
  - The core folder ONLY accepts common objects that will be used across the app
  
+ ### Gitflow
+ ![gitflow](https://user-images.githubusercontent.com/56892961/223226148-a77388ef-844c-4de7-8281-984f1644d362.png)
+
+ 
  ## :nut_and_bolt: TODO
  - App theme
  - TextField suggestions
