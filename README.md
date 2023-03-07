@@ -3,7 +3,7 @@
 
 This project is a MVP, from version 2 onwards, it must follow the gitflow rules listed below
 
-Creating this project with the object of proving my Flutter/dart skills
+Creating this project with the object of proving my Flutter/dart skills. Also decided to use Getx to learn it.
 
 Ideia from: [Github](https://github.com/guideti/variacao-ativo)
 
